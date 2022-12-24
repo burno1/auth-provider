@@ -1,6 +1,6 @@
 package com.provider.auth.app.services;
 
-import com.provider.auth.app.model.User;
+import com.provider.auth.app.model.po.UserPO;
 import com.provider.auth.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
   private final UserRepository userRepository;
 
-  public User saveUser(User user) {
-    return userRepository.save(user);
+  public UserPO saveUser(UserPO userPO) {
+    return userRepository.save(userPO);
+  }
+  public boolean validateCredentials(String username, String password) {
+    return !userRepository.findByUsername(username).isEmpty();
   }
 }
