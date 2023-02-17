@@ -1,4 +1,4 @@
-package com.provider.auth.app.repository;
+package com.provider.auth.app.repository.interfaces;
 
 import com.provider.auth.app.model.po.UserPO;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +11,7 @@ import java.util.List;
  * Created at : 23/12/2022
  */
 @Repository
-public interface UserRepository extends JpaRepository<UserPO,Long> {
+public interface IUserRepository extends JpaRepository<UserPO,Long> {
   List<UserPO> findByUsername(String username);
-
 
 }

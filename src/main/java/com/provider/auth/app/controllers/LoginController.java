@@ -1,7 +1,8 @@
 package com.provider.auth.app.controllers;
 
-import com.provider.auth.app.model.dto.LoginRequestDTO;
+import com.provider.auth.app.model.dto.LoginDTO;
 import com.provider.auth.app.services.UserService;
+import com.provider.auth.app.services.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +19,11 @@ import javax.validation.constraints.NotNull;
 @RequiredArgsConstructor
 public class LoginController {
 
-  private final UserService userValidationService;
+  private final IUserService userValidationService;
 
   @PostMapping("/login")
   @ResponseBody
-  public String login(@NotNull @RequestBody LoginRequestDTO request) {
-    // Validate the user and password combination
+  public String login(@NotNull @RequestBody LoginDTO request) {
     if (userValidationService.validateCredentials(request.username(), request.password())) {
       return "Success";
     }

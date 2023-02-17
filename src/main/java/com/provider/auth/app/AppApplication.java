@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = { "com.provider.auth.app.*" })
 @EntityScan(basePackages = {"com.provider.auth.app.model"})
 public class AppApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}

@@ -1,7 +1,8 @@
 package com.provider.auth.app.services;
 
 import com.provider.auth.app.model.po.UserPO;
-import com.provider.auth.app.repository.UserRepository;
+import com.provider.auth.app.repository.interfaces.IUserRepository;
+import com.provider.auth.app.services.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class UserService {
-  private final UserRepository userRepository;
+public class UserService implements IUserService {
+  private final IUserRepository IUserRepository;
 
   public UserPO saveUser(UserPO userPO) {
-    return userRepository.save(userPO);
+    return IUserRepository.save(userPO);
   }
   public boolean validateCredentials(String username, String password) {
-    return !userRepository.findByUsername(username).isEmpty();
+    return !IUserRepository.findByUsername(username).isEmpty();
   }
 }
